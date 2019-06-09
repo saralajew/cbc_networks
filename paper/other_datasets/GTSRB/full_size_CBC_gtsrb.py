@@ -293,7 +293,7 @@ if __name__ == '__main__':
 
         train_model.fit_generator(
             generator=generator,
-            steps_per_epoch=20, #int(y_train.shape[0] / args.batch_size),
+            steps_per_epoch=int(y_train.shape[0] / args.batch_size),
             epochs=args.epochs,
             validation_data=[x_test, y_test],
             callbacks=callback_list,
