@@ -45,8 +45,8 @@ Before you can run our experiments, you need to clone this repository by
 calling
 
 ```
-git clone https://github.com/cbc_authors/... .git
-cd ...
+git clone https://github.com/cbc_authors/cbc-networks.git
+cd cbc-networks
 ```
 
 You can install the Keras package with pip3 after cloning. In the 

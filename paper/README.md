@@ -9,6 +9,14 @@ and therefore impossible to specify before hand. However, when these
 parameters are not specified when the script is called, the default values 
 will represent the setting used in the paper.
 
+You can call an experiment by
+
+> `python <script_name>.py`
+
+followed by a list of parameters in the form:
+
+> `--<parameter_name> <[optional]parameter_value>`.
+
 ## Parameters
 The following standard parameter settings are available.
 
