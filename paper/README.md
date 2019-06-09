@@ -11,11 +11,11 @@ will represent the setting used in the paper.
 
 You can call an experiment by
 
-> `python <script_name>.py`
+```python <script_name>.py```
 
 followed by a list of parameters in the form:
 
-> `--<parameter_name> <[optional]parameter_value>`.
+```--<parameter_name> <[optional]parameter_value>```
 
 ## Parameters
 The following standard parameter settings are available.
