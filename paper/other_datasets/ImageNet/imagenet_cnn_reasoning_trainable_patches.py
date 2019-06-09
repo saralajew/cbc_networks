@@ -20,12 +20,14 @@ from keras import callbacks
 from keras.optimizers import Adam
 from keras.applications.resnet50 import preprocess_input
 
-from keras_cbc.layers.component_input import ConstantInput, AddComponents
-from keras_cbc.layers.detection_probability_functions import CosineSimilarity2D
+from keras_cbc.layers.component_input import ConstantInput, \
+    AddComponents
+from keras_cbc.layers.detection_probability_functions import \
+    CosineSimilarity2D
 from keras_cbc.layers.reasoning_layers import Reasoning
 from keras_cbc.utils.losses import MarginLoss
-from paper.other_datasets.ImageNet.utils.multi_gpu_siamese import \
-    multi_gpu_siamese
+
+from utils.multi_gpu_siamese import multi_gpu_siamese
 
 
 def get_data_generators(args):

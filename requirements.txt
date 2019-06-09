@@ -1,4 +1,0 @@
-Keras==2.2.4
-opencv-python==4.1.0.25
-Pillow==6.0.0
-tensorflow-gpu==1.12.0

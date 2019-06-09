@@ -8,8 +8,7 @@ from __future__ import print_function
 import cv2
 import os
 
-from keras_cbc.visualizations.utils import make_uint8_img, pixel_counts, \
-    patch_to_img, resize_img_stack
+from .utils import make_uint8_img, pixel_counts, patch_to_img, resize_img_stack
 
 import numpy as np
 

@@ -18,8 +18,7 @@ from keras import callbacks
 
 from keras_cbc.utils.evaluation import statistics
 
-from paper.other_datasets.GTSRB.utils.load_data import train_data_with_label, \
-    test_data_with_label
+from utils.load_data import train_data_with_label, test_data_with_label
 
 
 def get_data(args):

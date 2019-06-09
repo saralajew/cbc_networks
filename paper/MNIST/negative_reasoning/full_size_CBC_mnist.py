@@ -18,14 +18,17 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras import backend as K
 from keras.initializers import RandomUniform
 
-from keras_cbc.layers.component_input import ConstantInput, AddComponents
-from keras_cbc.layers.detection_probability_functions import CosineSimilarity2D
+from keras_cbc.layers.component_input import \
+    ConstantInput, AddComponents
+from keras_cbc.layers.detection_probability_functions import \
+    CosineSimilarity2D
 from keras_cbc.layers.reasoning_layers import Reasoning
-from keras_cbc.utils.constraints import euclidean_normalization, clip
+from keras_cbc.utils.constraints import \
+    euclidean_normalization, clip
 from keras_cbc.utils.losses import margin_loss
 from keras_cbc.utils.activations import swish
-from keras_cbc.visualizations.basic_visualizations import plot_components, \
-    plot_simple_reasoning
+from keras_cbc.visualizations.basic_visualizations import \
+    plot_components, plot_simple_reasoning
 from keras_cbc.utils.evaluation import statistics
 
 
