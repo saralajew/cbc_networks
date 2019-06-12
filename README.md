@@ -37,23 +37,32 @@ of which are presented in Sec. 4.1.2. Lastly, the utils module contains
 additional activation functions, callbacks, constraints and loss functions 
 such as the euclidean normalization and margin loss function. 
 
-The implementation in the Keras package are so far only tested using 
-Tensorflow as the backend for Keras. Additionally, we recommend using 
-python3.5 or higher, as no other version has been tested yet. 
+### Keras installation
 
-Before you can run our experiments, you need to clone this repository by 
-calling
+The package requires a working installation of the latest Keras version with
+a **backend of your choice**. Please, make sure that you **installed Keras 
+properly** before you proceed with the installation of this package.
+See [here](https://github.com/keras-team/keras) for the installation 
+instructions of Keras.
+
+### CBC package installation
+
+We recommend using Python 3, as no other version has been tested 
+yet. Additionally, the ImageNet experiment requires tensorflow-gpu as 
+backend (see `extras_require` in `setup.py`).
+
+Clone this repository by calling
 
 ```
 git clone https://github.com/cbc-authors/cbc_networks.git
 cd cbc_networks
 ```
 
-You can install the Keras package with pip3 after cloning. In the 
-root directory (where setup.cfg and setup.py are) call
+Install the package with pip after cloning. In the 
+root directory (where `setup.cfg` and `setup.py` are) call
 
 ```
-pip3 install -e .
+pip install -e .
 ```
 
 ## Paper experiments
