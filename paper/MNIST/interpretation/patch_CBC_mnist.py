@@ -169,7 +169,7 @@ def model(input_shape,
 
     probabilities = reasoning(detection)
 
-    # Majority vote over replicas
+    # Winner-Take-All over replicas
     probabilities = Lambda(lambda x: K.max(x, -1))(probabilities)
 
     # Squeeze one dimensions
