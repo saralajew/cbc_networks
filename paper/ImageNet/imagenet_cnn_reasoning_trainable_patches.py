@@ -10,8 +10,6 @@ import keras
 import argparse
 import os
 
-import tensorflow as tf
-
 from keras.metrics import top_k_categorical_accuracy, categorical_accuracy
 from keras.preprocessing.image import ImageDataGenerator
 from keras.layers import *
@@ -26,8 +24,6 @@ from keras_cbc.layers.detection_probability_functions import \
     CosineSimilarity2D
 from keras_cbc.layers.reasoning_layers import Reasoning
 from keras_cbc.utils.losses import MarginLoss
-
-from utils.multi_gpu_siamese import multi_gpu_siamese
 
 
 def get_data_generators(args):
@@ -167,8 +163,7 @@ def model(input_shape,
           n_classes,
           components_initializer=None,
           reasoning_initializer=None):
-    """Defines the CBC model without trainable backbone. The model is
-    instantiated on the CPU and then parallelized over the specified GPUs.
+    """Defines the CBC model without trainable backbone.
 
        # Arguments:
            input_shape: List/tuple of three integers, specifying the shape of
@@ -181,48 +176,44 @@ def model(input_shape,
            reasoning_initializer: Numpy array, the initialized reasoning matrix
 
        # Returns:
-           The parallelized model
+           The model
        """
-    with tf.device('/cpu:0'):
-        # Initialize backbone
-        data_input = Input(shape=input_shape, name='model_input')
-        backbone = Backbone(data_input)
-        data_output = backbone()
+    # Initialize backbone
+    data_input = Input(shape=input_shape, name='model_input')
+    backbone = Backbone(data_input)
+    data_output = backbone()
 
-        # Create initial components by processing them through the feature
-        # extractor.
-        patch_input = Input(shape=component_shape, name='model_input')
-        patch_network = Backbone(patch_input)
-        init_components = patch_network.model.predict(components_initializer)
+    # Create initial components by processing them through the feature
+    # extractor.
+    patch_input = Input(shape=component_shape, name='model_input')
+    patch_network = Backbone(patch_input)
+    init_components = patch_network.model.predict(components_initializer)
 
-        # Create component input
-        components_input = ConstantInput(np.zeros((1,)), name='components')()
-        components = AddComponents(shape=init_components.shape,
+    # Create component input
+    components_input = ConstantInput(np.zeros((1,)), name='components')()
+    components = AddComponents(shape=init_components.shape,
                                    initializer=lambda x: init_components,
                                    )(components_input)
 
-        # Create detection network
-        detection = CosineSimilarity2D(padding='valid', activation='relu')(
+    # Create detection network
+    detection = CosineSimilarity2D(padding='valid', activation='relu')(
             [data_output, components])
 
-        # Down sample to get detection probability for each component
-        detection = GlobalMaxPool2D()(detection)
+    # Down sample to get detection probability for each component
+    detection = GlobalMaxPool2D()(detection)
 
-        # Reasoning
-        reasoning = Reasoning(
+    # Reasoning
+    reasoning = Reasoning(
             n_classes=n_classes,
             reasoning_initializer=lambda x: reasoning_initializer)
 
-        probabilities = reasoning(detection)
+    probabilities = reasoning(detection)
 
-        # Create model
-        single_model = Model([data_input, components_input], probabilities)
-        single_model.summary()
+    # Create model
+    single_model = Model([data_input, components_input], probabilities)
+    single_model.summary()
 
-    gpus_model = multi_gpu_siamese(single_model, gpus=len(
-        os.environ["CUDA_VISIBLE_DEVICES"].split(',')))
-
-    return gpus_model
+    return single_model
 
 
 if __name__ == '__main__':
@@ -234,7 +225,7 @@ if __name__ == '__main__':
     parser.add_argument('--lr', default=0.0001, type=float,
                         help="Initial learning rate of Adam.")
     parser.add_argument('--batch_size', default=512, type=int)
-    parser.add_argument('--gpu', default='0,1', type=str,
+    parser.add_argument('--gpu', default=0, type=int,
                         help="Select the GPU used for training.")
     parser.add_argument('--eval', action='store_true',
                         help="Evaluation mode: statistics of the trained "
@@ -254,7 +245,7 @@ if __name__ == '__main__':
         os.makedirs(args.save_dir)
 
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-    os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu
+    os.environ["CUDA_VISIBLE_DEVICES"] = str(args.gpu)
 
     n_components_per_class = 5
     n_classes = 1000

@@ -7,13 +7,13 @@ CBC networks in Keras.
 '''
 
 setup(name='keras_cbc',
-      version='0.0.1',
+      version='0.1.0',
       description='CBC networks in Keras.',
       long_description=long_description,
-      author='CBC authors',
+      author='Sascha Saralajew',
       author_email='cbc.authors@gmail.com',
-      url='https://github.com/cbc-authors/cbc_networks',
-      download_url='https://github.com/cbc-authors/cbc_networks.git',
+      url='https://github.com/saralajew/cbc_networks',
+      download_url='https://github.com/saralajew/cbc_networks.git',
       license='BSD 3-Clause License',
       install_requires=['keras>=2.2.4',
                         'opencv-python>=4.1',
