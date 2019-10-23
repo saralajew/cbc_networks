@@ -15,7 +15,7 @@ provided in this repository.
 ## Dataset
 For our experiments we used the ImageNet dataset used during the ILSVRC 
 competition organized in 2012. The dataset can be found 
-[here](http://www.image-net.org/challenges/LSVRC/2012/nonpub-downloads).
+[here](http://www.image-net.org/challenges/LSVRC/2012).
 
 To run the script provided here, the location of the train and test folder 
 needs to be specified using command line parameters. 

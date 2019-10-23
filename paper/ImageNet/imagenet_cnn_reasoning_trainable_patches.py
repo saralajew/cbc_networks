@@ -192,8 +192,8 @@ def model(input_shape,
     # Create component input
     components_input = ConstantInput(np.zeros((1,)), name='components')()
     components = AddComponents(shape=init_components.shape,
-                                   initializer=lambda x: init_components,
-                                   )(components_input)
+                               initializer=lambda x: init_components,
+                               )(components_input)
 
     # Create detection network
     detection = CosineSimilarity2D(padding='valid', activation='relu')(
@@ -206,7 +206,6 @@ def model(input_shape,
     reasoning = Reasoning(
             n_classes=n_classes,
             reasoning_initializer=lambda x: reasoning_initializer)
-
     probabilities = reasoning(detection)
 
     # Create model
@@ -301,17 +300,23 @@ if __name__ == '__main__':
             callbacks=[checkpoint,
                        lr_reduce,
                        csv_logger],
-            verbose=1)
+            verbose=1,
+            use_multiprocessing=True,
+            workers=20)
 
     print('train results:')
     print(train_model.evaluate_generator(
         train_generator,
         steps=n_images_train / args.batch_size,
-        verbose=True))
+        verbose=True,
+        use_multiprocessing=True,
+        workers=12))
     print('test results:')
     print(train_model.evaluate_generator(
         val_generator,
         steps=n_images_val / args.batch_size,
-        verbose=True))
+        verbose=True,
+        use_multiprocessing=True,
+        workers=12))
 
     train_model.save_weights(args.save_dir + '/trained_model.h5')

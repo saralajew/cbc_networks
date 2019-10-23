@@ -1,6 +1,6 @@
 # Classification-by-Components: Probabilistic Modeling of Reasoning over a Set of Components
 
-[![License](https://img.shields.io/pypi/l/Django.svg)](https://github.com/AnysmaForBlindReview/anysma/blob/master/LICENSE)
+[![License](https://img.shields.io/pypi/l/Django.svg)](https://github.com/saralajew/cbc_networks/blob/master/LICENSE)
 
 This repository contains both the scripts required to reproduce the 
 experiments presented in the corresponding paper as well as the package 
@@ -37,7 +37,7 @@ backend (see `extras_require` in `setup.py`).
 Clone this repository by calling
 
 ```
-git clone https://github.com/cbc-authors/cbc_networks.git
+git clone https://github.com/saralajew/cbc_networks.git
 cd cbc_networks
 ```
 
