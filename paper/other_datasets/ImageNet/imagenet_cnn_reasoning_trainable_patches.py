@@ -301,17 +301,23 @@ if __name__ == '__main__':
             callbacks=[checkpoint,
                        lr_reduce,
                        csv_logger],
-            verbose=1)
+            verbose=1,
+            use_multiprocessing=True,
+            workers=20)
 
     print('train results:')
     print(train_model.evaluate_generator(
         train_generator,
         steps=n_images_train / args.batch_size,
-        verbose=True))
+        verbose=True,
+        use_multiprocessing=True,
+        workers=12))
     print('test results:')
     print(train_model.evaluate_generator(
         val_generator,
         steps=n_images_val / args.batch_size,
-        verbose=True))
+        verbose=True,
+        use_multiprocessing=True,
+        workers=12))
 
     train_model.save_weights(args.save_dir + '/trained_model.h5')
