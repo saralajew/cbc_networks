@@ -206,7 +206,6 @@ def model(input_shape,
     reasoning = Reasoning(
             n_classes=n_classes,
             reasoning_initializer=lambda x: reasoning_initializer)
-
     probabilities = reasoning(detection)
 
     # Create model
