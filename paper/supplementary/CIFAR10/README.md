@@ -1,4 +1,4 @@
-# 4.2 CIFAR-10
+# E.4 CIFAR-10
 To evaluate the CBCs scaling to RGB images with a lot of background noise we 
 trained a CBC on the CIFAR-10 dataset and compared it to a baseline CNN. 
 

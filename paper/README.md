@@ -1,6 +1,7 @@
 # Experiments scripts
 This folder contains all scripts required to replicate the results presented 
-in the paper. Each section is represented in a different folder. 
+in the main part of the paper and some additional scripts to replicate the 
+results on the GTSRB and Cifar10 dataset found in the supplementary. 
 
 While most parameters for the scripts are hard coded in line with the settings 
 used in the paper, some settings are available as command line parameters. 

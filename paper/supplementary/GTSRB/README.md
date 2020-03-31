@@ -1,4 +1,4 @@
-# 4.2 GTSRB
+# E.3 GTSRB
 The GTSRB dataset contains images of 43 different traffic signs. Intuitively, 
 the GTSRB classes should be easy to represent by a single class specific 
 prototype.
