@@ -45,6 +45,9 @@ properly** before you proceed with the installation of this package.
 See [here](https://github.com/keras-team/keras) for the installation 
 instructions of Keras.
 
+**If you use Tensorflow as backend, then please use Tensorflow 1. We observed
+ problems with Tensorflow 2!**
+
 ### CBC package installation
 
 We recommend using Python 3, as no other version has been tested 
